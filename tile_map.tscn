@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwhvtqld3yo8m"]
+[gd_scene load_steps=4 format=3 uid="uid://bwhvtqld3yo8m"]
 
 [ext_resource type="TileSet" uid="uid://c168x78r0tful" path="res://Tiles.tres" id="1_l3nwg"]
 [ext_resource type="Script" path="res://tile_map.gd" id="2_wrxl8"]
+[ext_resource type="PackedScene" uid="uid://d0v18e7ms571f" path="res://l_system.tscn" id="3_ktw1n"]
 
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_l3nwg")
 format = 2
 layer_0/name = "Grass"
+layer_1/name = "Things"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_wrxl8")
+
+[node name="LSystem" parent="." instance=ExtResource("3_ktw1n")]
