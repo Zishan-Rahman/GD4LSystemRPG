@@ -1,5 +1,7 @@
 extends Node
 
+class_name LSystem
+
 @onready var tile_map: TileMap = get_parent()
 @export var axiom: String = "OWB"
 @onready var string: String = axiom
