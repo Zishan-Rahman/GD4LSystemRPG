@@ -54,11 +54,3 @@ func paint() -> void:
 				tile_map.set_cell(1, Vector2i(x, y), 0, FLOWERS_2)
 			elif string[i] == "B":
 				tile_map.set_cell(1, Vector2i(x, y), 0, FLOWERS_3)
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	paint()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta) -> void:
-	pass
