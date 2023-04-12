@@ -20,4 +20,7 @@ func cover_map_with_grass() -> void:
 func _ready() -> void:
 	randomize()
 	cover_map_with_grass()
+	var start_time: float = Time.get_ticks_msec()
 	l_system.paint()
+	var new_time: float = Time.get_ticks_msec() - start_time
+	print("Time taken: " + str(new_time) + "ms")
