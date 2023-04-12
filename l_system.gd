@@ -20,9 +20,53 @@ class_name LSystem
 	}
 ]
 
-const FLOWERS_1: Vector2i = Vector2i(3, 7) # "O" = ORANGE
-const FLOWERS_2: Vector2i = Vector2i(3, 10) # "W" = WHITE
-const FLOWERS_3: Vector2i = Vector2i(3, 13) # "B" = BLUE
+
+
+var buildings: Array[Vector2i] = [
+	Vector2i(0, 19),
+	Vector2i(1, 19),
+	Vector2i(2, 19),
+	Vector2i(3, 19),
+	Vector2i(4, 19),
+	Vector2i(5, 19),
+	Vector2i(6, 19),
+	Vector2i(7, 19),
+	Vector2i(8, 20),
+	Vector2i(0, 20),
+	Vector2i(1, 20),
+	Vector2i(2, 20),
+	Vector2i(3, 20),
+	Vector2i(4, 20),
+	Vector2i(5, 20),
+	Vector2i(6, 20),
+	Vector2i(7, 20),
+	Vector2i(8, 20),
+	Vector2i(0, 21),
+	Vector2i(1, 21),
+	Vector2i(2, 21),
+	Vector2i(3, 21),
+	Vector2i(4, 21),
+	Vector2i(5, 21),
+	Vector2i(6, 21),
+	Vector2i(7, 21),
+	Vector2i(8, 21)
+]
+var trees: Array[Vector2i] = [
+	Vector2i(0,1),
+	Vector2i(1,1),
+	Vector2i(2,1),
+	Vector2i(3,1),
+	Vector2i(4,1),
+	Vector2i(5,1),
+	Vector2i(6,1),
+	Vector2i(7,1),
+	Vector2i(0,2),
+	Vector2i(1,2),
+	Vector2i(2,2),
+	Vector2i(3,2),
+	Vector2i(4,2)
+]
+const BLANK: Vector2i = Vector2i(0, 0)
 
 func get_new_replacement(character: String) -> String:
 	for rule in rules:
@@ -51,8 +95,8 @@ func paint() -> void:
 		for y in range(tile_map.y_tile_range):
 			i += 1
 			if string[i] == "O":
-				tile_map.set_cell(1, Vector2i(x, y), 0, FLOWERS_1)
+				tile_map.set_cell(0, Vector2i(x, y), 0, BLANK)
 			elif string[i] == "W":
-				tile_map.set_cell(1, Vector2i(x, y), 0, FLOWERS_2)
+				tile_map.set_cell(0, Vector2i(x, y), 0, trees.pick_random())
 			elif string[i] == "B":
-				tile_map.set_cell(1, Vector2i(x, y), 0, FLOWERS_3)
+				tile_map.set_cell(0, Vector2i(x, y), 0, buildings.pick_random())
