@@ -95,7 +95,7 @@ func paint() -> void:
 		for y in range(tile_map.y_tile_range):
 			i += 1
 			if string[i] == "O":
-				tile_map.set_cell(0, Vector2i(x, y), 0, BLANK)
+				pass
 			elif string[i] == "W":
 				tile_map.set_cell(0, Vector2i(x, y), 0, trees.pick_random())
 			elif string[i] == "B":
