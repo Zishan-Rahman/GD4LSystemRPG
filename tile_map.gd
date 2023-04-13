@@ -40,3 +40,5 @@ func _physics_process(_delta):
 		player_placement_cell = new_placement_cell
 		set_cell(0, previous_cell, 0)
 		set_cell(0, player_placement_cell, 0, PLAYER_SPRITE)
+
+# ALGORITHM IS IN LSYSTEM NODE
