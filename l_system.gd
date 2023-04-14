@@ -22,7 +22,7 @@ class_name LSystem
 
 
 
-var buildings: Array[Vector2i] = [
+const buildings: Array[Vector2i] = [
 	Vector2i(0, 19),
 	Vector2i(1, 19),
 	Vector2i(2, 19),
@@ -51,7 +51,7 @@ var buildings: Array[Vector2i] = [
 	Vector2i(7, 21),
 	Vector2i(8, 21)
 ]
-var trees: Array[Vector2i] = [
+const trees: Array[Vector2i] = [
 	Vector2i(0,1),
 	Vector2i(1,1),
 	Vector2i(2,1),
@@ -66,7 +66,6 @@ var trees: Array[Vector2i] = [
 	Vector2i(3,2),
 	Vector2i(4,2)
 ]
-const BLANK: Vector2i = Vector2i(0, 0)
 
 func get_new_replacement(character: String) -> String:
 	for rule in rules:
