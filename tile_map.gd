@@ -20,7 +20,7 @@ func _ready() -> void:
 func _get_player_placement_cell() -> Vector2i:
 	return Vector2i(randi() % x_tile_range, randi() % y_tile_range)
 
-func place_player():
+func place_player() -> void:
 	while get_used_cells(0).has(player_placement_cell):
 		player_placement_cell = _get_player_placement_cell()
 	set_cell(0, player_placement_cell, 0, PLAYER_SPRITE)
@@ -28,7 +28,7 @@ func place_player():
 func _is_not_out_of_bounds(cell: Vector2i) -> bool:
 	return cell.x >= 0 and cell.x < x_tile_range and cell.y >= 0 and cell.y < y_tile_range
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	var previous_cell: Vector2i = player_placement_cell
 	var direction: Vector2i = Vector2i.ZERO
 	if Input.is_action_pressed("ui_up"): direction = Vector2i.UP
