@@ -76,4 +76,4 @@ func _physics_process(_delta: float) -> void:
 			$WinDialog.visible = true
 			get_tree().paused = true
 
-# ALGORITHM IS IN LSYSTEM NODE
+# ALGORITHM AND CUSTOM EXPORT VARIABLES ARE IN LSYSTEM NODE
