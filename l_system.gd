@@ -4,8 +4,15 @@ class_name LSystem
 
 @onready var tile_map: TileMap = get_parent()
 @export var axiom: String = "OWB"
+@export var use_random_axiom: bool = false
+@export var use_custom_ruleset: bool = false
+## Defines how many characters a random axiom can have MAXIMUM. Only used when use_random_axiom is true.
+@export var upper_limit: int = 10
 @onready var string: String = axiom
-@export var rules: Array[Dictionary] = [
+@export_enum("Default", "More Buildings (IMPOSSIBLE)", "More Trees", "More Space") var ruleset: String = "Default"
+@export var rules: Array[Dictionary] = DEFAULT
+
+const DEFAULT: Array[Dictionary] = [
 	{
 		"from": "O",
 		"to": "OWO"
@@ -19,8 +26,48 @@ class_name LSystem
 		"to": "BWO"
 	}
 ]
-
-
+const MORE_BUILDINGS: Array[Dictionary] = [
+	{
+		"from": "O",
+		"to": "BWOB"
+	},
+	{
+		"from": "W",
+		"to": "WBOBO"
+	},
+	{
+		"from": "B",
+		"to": "BB"
+	}
+]
+const MORE_TREES: Array[Dictionary] = [
+	{
+		"from": "O",
+		"to": "WWO"
+	},
+	{
+		"from": "W",
+		"to": "WBWO"
+	},
+	{
+		"from": "B",
+		"to": "BWWO"
+	}
+]
+const MORE_SPACE: Array[Dictionary] = [
+	{
+		"from": "O",
+		"to": "OOBWO"
+	},
+	{
+		"from": "W",
+		"to": "OB"
+	},
+	{
+		"from": "B",
+		"to": "OW"
+	}
+]
 
 const buildings: Array[Vector2i] = [
 	Vector2i(0, 19),
@@ -67,17 +114,35 @@ const trees: Array[Vector2i] = [
 	Vector2i(4,2)
 ]
 
+func _get_ruleset() -> Array[Dictionary]:
+	match ruleset:
+		"More Buildings (IMPOSSIBLE)": return MORE_BUILDINGS
+		"More Trees": return MORE_TREES
+		"More Space": return MORE_SPACE
+		_: return DEFAULT
+
 func get_new_replacement(character: String) -> String:
 	for rule in rules:
 		if rule["from"] == character:
 			return rule["to"]
-	return ""
+	return character
 
-func size() -> int:
+func _size() -> int:
 	return tile_map.x_tile_range * tile_map.y_tile_range
 
+func rand_axiom() -> String:
+	var string_buffer: String = ""
+	var limit: int = randi_range(1, upper_limit)
+	for i in range(limit):
+		string_buffer += ["O", "W", "B"].pick_random()
+	return string_buffer
+
 func parse() -> String:
-	var size: int = size()
+	if use_random_axiom:
+		axiom = rand_axiom()
+	if not use_custom_ruleset or ruleset != "Default":
+		rules = _get_ruleset()
+	var size: int = _size()
 	while len(string) <= size:
 		var new_string = ""
 		for character in string:
