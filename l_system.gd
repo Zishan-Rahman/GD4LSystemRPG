@@ -88,7 +88,6 @@ func parse() -> String:
 
 func paint() -> void:
 	string = parse()
-	var size: int = size()
 	var i: int = -1
 	for x in range(tile_map.x_tile_range):
 		for y in range(tile_map.y_tile_range):
