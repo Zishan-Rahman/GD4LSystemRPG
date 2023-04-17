@@ -4,7 +4,7 @@ class_name LSystem
 
 @onready var tile_map: TileMap = get_parent()
 @export var axiom: String = "OWB"
-@export var use_random_axiom: bool = false
+@export var use_random_axiom: bool = true
 @export var use_custom_ruleset: bool = false
 ## Defines how many characters a random axiom can have MAXIMUM. Only used when use_random_axiom is true.
 @export var upper_limit: int = 10
