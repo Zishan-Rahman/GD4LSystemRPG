@@ -140,6 +140,7 @@ func rand_axiom() -> String:
 func parse() -> String:
 	if use_random_axiom:
 		axiom = rand_axiom()
+		string = axiom
 	if not use_custom_ruleset or ruleset != "Default":
 		rules = _get_ruleset()
 	var size: int = _size()
