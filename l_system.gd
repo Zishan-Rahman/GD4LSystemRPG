@@ -3,13 +3,18 @@ extends Node
 class_name LSystem
 
 @onready var tile_map: TileMap = get_parent()
+## The starting string from which the grammar starts applying its rules. Here it may be self defined, or randomly defined when use_random_axiom is true.
 @export var axiom: String = "OWB"
+## Uses a random axiom with the currently set grammar, computed upon runtime, with a length up to (but not strictly) the value of upper_limit. For example, if upper_limit is set to 15, the generated axiom can be 15 characters, or it can be just 5 characters.
 @export var use_random_axiom: bool = true
 ## Defines how many characters a random axiom can have MAXIMUM. Only used when use_random_axiom is true.
 @export var upper_limit: int = 10
+## Allows the use of a customly defined ruleset made through amending the rules array in the editor.
 @export var use_custom_ruleset: bool = false
 @onready var string: String = axiom
+## Denotes a series of pre-defined rulesets for this L-System grammar, of alphabet O (blank space), W (trees and fauna) and B (buildings), that can be chosen and then used on runtime. Can choose between a default ruleset, a ruleset that produces more buildings, a ruleset that produces more trees and a ruleset that produces more empty space.
 @export_enum("Default", "More Buildings (IMPOSSIBLE)", "More Trees", "More Space") var ruleset: String = "Default"
+## The set of rules that the L-System grammar uses. Shows the "default" ruleset in the Godot editor for the user to see. If use_custom_ruleset is set to true, this array can be edited with a customly defined ruleset that will be used on runtime, so long as it adheres to the alphabet of O (blank space), W (trees and fauna) and B (buildings).
 @export var rules: Array[Dictionary] = DEFAULT
 
 const DEFAULT: Array[Dictionary] = [
