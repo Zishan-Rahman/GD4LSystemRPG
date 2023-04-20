@@ -14,7 +14,7 @@ class_name LSystem
 @onready var string: String = axiom
 ## Denotes a series of pre-defined rulesets for this L-System grammar, of alphabet O (blank space), W (trees and fauna) and B (buildings), that can be chosen and then used on runtime. Can choose between a default ruleset, a ruleset that produces more buildings, a ruleset that produces more trees and a ruleset that produces more empty space.
 @export_enum("Default", "More Buildings (IMPOSSIBLE)", "More Trees", "More Space") var ruleset: String = "Default"
-## The set of rules that the L-System grammar uses. Shows the "default" ruleset in the Godot editor for the user to see. If use_custom_ruleset is set to true, this array can be edited with a customly defined ruleset that will be used on runtime, so long as it adheres to the alphabet of O (blank space), W (trees and fauna) and B (buildings).
+## The set of rules that the L-System grammar uses. Shows the "default" ruleset in the Godot editor for the user to see. If use_custom_ruleset is set to true, this array can be edited with a custom defined ruleset that will be used on runtime, so long as it adheres to the alphabet of O (blank space), W (trees and fauna) and B (buildings).
 @export var rules: Array[Dictionary] = DEFAULT
 
 const DEFAULT: Array[Dictionary] = [
@@ -148,6 +148,7 @@ func parse() -> String:
 		string = axiom
 	if not use_custom_ruleset or ruleset != "Default":
 		rules = _get_ruleset()
+	print("Axiom length: " + str(len(axiom)))
 	var size: int = _size()
 	while len(string) <= size:
 		var new_string = ""
